@@ -1,5 +1,5 @@
 from pyrogram import Client, filters
-from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 import asyncio
 
 # Your Telegram API credentials
@@ -25,11 +25,14 @@ async def send_recurring_message():
         # Create an InlineKeyboardMarkup with the button
         keyboard = InlineKeyboardMarkup([[InlineKeyboardButton(button_text, url=button_url)]])
 
-        # Send the message with sticker and button to the private channel
-        await app.send_message(private_channel_chat_id, text=message_content, reply_markup=keyboard, sticker=sticker_file_id)
+        # Send the sticker
+        await app.send_sticker(private_channel_chat_id, sticker=sticker_file_id)
+
+        # Send the message with button to the private channel
+        await app.send_message(private_channel_chat_id, text=message_content, reply_markup=keyboard)
 
         # Set the interval for the recurring message (in seconds)
-        await asyncio.sleep(30)  # Adjust the interval as needed
+        await asyncio.sleep(3600)  # Adjust the interval as needed
 
 # Event handler for incoming messages
 @app.on_message(filters.command("start"))
@@ -40,4 +43,3 @@ async def start_bot(client, message):
 
 # Start the bot
 app.run()
-
