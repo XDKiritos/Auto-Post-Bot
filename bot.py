@@ -13,19 +13,27 @@ private_channel_chat_id = -1002108625817  # Replace with your actual private cha
 # Create a Pyrogram Client
 app = Client("my_bot", api_id=api_id, api_hash=api_hash, bot_token=bot_token)
 
-# Function to send a recurring sticker with a button
+# Function to send a recurring sticker with a button and delete the last message
 async def send_recurring_sticker_with_button():
+    last_message_id = None  # Store the message ID of the last sent message
     while True:
         # Customize the sticker and button details
         sticker_file_id = "CAACAgEAAxUAAWXSayASP-RKCMl4GrQNf42dR606AAIxAgACgqAgRAcLMFWsscaHNAQ"
-        button_text = "Forward to 3 group 0/3"
-        button_url = "https://t.me/share/url?url=https://t.me/joinchat/FkBARZVToxRmNzc1"
+        button_text = "Click Here"
+        button_url = "https://example.com"
 
         # Create an InlineKeyboardMarkup with the button
         keyboard = InlineKeyboardMarkup([[InlineKeyboardButton(button_text, url=button_url)]])
 
+        # Delete the last sent message
+        if last_message_id:
+            await app.delete_messages(chat_id=private_channel_chat_id, message_ids=last_message_id)
+
         # Send the sticker with the button to the private channel
-        await app.send_sticker(private_channel_chat_id, sticker=sticker_file_id, reply_markup=keyboard)
+        message = await app.send_sticker(private_channel_chat_id, sticker=sticker_file_id, reply_markup=keyboard)
+
+        # Update the last sent message ID
+        last_message_id = message.message_id
 
         # Set the interval for the recurring sticker (in seconds)
         await asyncio.sleep(25)  # Adjust the interval as needed
