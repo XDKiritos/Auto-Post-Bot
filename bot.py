@@ -13,33 +13,29 @@ private_channel_chat_id = -1002108625817  # Replace with your actual private cha
 # Create a Pyrogram Client
 app = Client("my_bot", api_id=api_id, api_hash=api_hash, bot_token=bot_token)
 
-# Function to send a recurring message with customizable content
-async def send_recurring_message():
+# Function to send a recurring sticker with a button
+async def send_recurring_sticker_with_button():
     while True:
-        # Customize the message content, sticker, and button link
-        message_content = "Hello! This is a recurring message."
+        # Customize the sticker and button details
         sticker_file_id = "CAACAgEAAxUAAWXSayASP-RKCMl4GrQNf42dR606AAIxAgACgqAgRAcLMFWsscaHNAQ"
-        button_text = "Click Here"
-        button_url = "https://example.com"
+        button_text = "Forward to 3 group 0/3"
+        button_url = "https://t.me/share/url?url=https://t.me/joinchat/FkBARZVToxRmNzc1"
 
         # Create an InlineKeyboardMarkup with the button
         keyboard = InlineKeyboardMarkup([[InlineKeyboardButton(button_text, url=button_url)]])
 
-        # Send the sticker
-        await app.send_sticker(private_channel_chat_id, sticker=sticker_file_id)
+        # Send the sticker with the button to the private channel
+        await app.send_sticker(private_channel_chat_id, sticker=sticker_file_id, reply_markup=keyboard)
 
-        # Send the message with button to the private channel
-        await app.send_message(private_channel_chat_id, text=message_content, reply_markup=keyboard)
-
-        # Set the interval for the recurring message (in seconds)
-        await asyncio.sleep(20)  # Adjust the interval as needed
+        # Set the interval for the recurring sticker (in seconds)
+        await asyncio.sleep(25)  # Adjust the interval as needed
 
 # Event handler for incoming messages
 @app.on_message(filters.command("start"))
 async def start_bot(client, message):
     print("Bot has started!")
-    # Start the recurring message loop
-    asyncio.create_task(send_recurring_message())
+    # Start the recurring sticker with button loop
+    asyncio.create_task(send_recurring_sticker_with_button())
 
 # Start the bot
 app.run()
