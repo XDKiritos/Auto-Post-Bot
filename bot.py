@@ -26,27 +26,24 @@ async def send_recurring_sticker_with_button():
         keyboard = InlineKeyboardMarkup([[InlineKeyboardButton(button_text, url=button_url)]])
 
         # Send the sticker with the button to the private channel
-        message = await app.send_sticker(private_channel_chat_id, sticker=sticker_file_id, reply_markup=keyboard)
+        await app.send_sticker(private_channel_chat_id, sticker=sticker_file_id, reply_markup=keyboard)
 
         # Set the interval for the recurring sticker (in seconds)
-        await asyncio.sleep(30)  # Adjust the interval as needed
+        await asyncio.sleep(600)  # Adjust the interval as needed
 
 # Function to delete messages sent 10 minutes ago in the channel
 async def delete_old_messages():
     while True:
         # Calculate the time 10 minutes ago
-        ten_minutes_ago = datetime.utcnow() - timedelta(minutes=1)
+        ten_minutes_ago = datetime.utcnow() - timedelta(minutes=10)
 
         # Get all messages in the channel
-        messages = await app.get_chat_history(chat_id=private_channel_chat_id, limit=100)  # You may need to adjust the limit
-
-        # Iterate through messages and delete those sent 10 minutes ago
-        for msg in messages:
+        async for msg in app.iter_chat_history(chat_id=private_channel_chat_id, limit=100):  # Adjust the limit as needed
             if msg.date <= ten_minutes_ago.timestamp():
                 await app.delete_messages(chat_id=private_channel_chat_id, message_ids=msg.message_id)
 
         # Set the interval for the message deletion (in seconds)
-        await asyncio.sleep(60)  # 10 minutes interval
+        await asyncio.sleep(600)  # 10 minutes interval
 
 # Event handler for incoming messages
 @app.on_message(filters.command("start"))
@@ -59,4 +56,3 @@ async def start_bot(client, message):
 
 # Start the bot
 app.run()
-
