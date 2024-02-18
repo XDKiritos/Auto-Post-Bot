@@ -7,8 +7,8 @@ api_id = "25139089"
 api_hash = "45fa74a814befe61aea26e35b0fdcb6b"
 bot_token = "6635436615:AAEYg-xscSj0oI4RPM5S9NeLlI_7jJ2rj14"
 
-# Your channel username without the '@' symbol
-channel_username = "https://t.me/+FkBARZVToxRmNzc1"
+# Your private channel chat ID
+private_channel_chat_id = -1002108625817  # Replace with your actual private channel chat ID
 
 # Create a Pyrogram Client
 app = Client("my_bot", api_id=api_id, api_hash=api_hash, bot_token=bot_token)
@@ -25,8 +25,8 @@ async def send_recurring_message():
         # Create an InlineKeyboardMarkup with the button
         keyboard = InlineKeyboardMarkup([[InlineKeyboardButton(button_text, url=button_url)]])
 
-        # Send the message with sticker and button
-        await app.send_message(channel_username, text=message_content, reply_markup=keyboard, sticker=sticker_file_id)
+        # Send the message with sticker and button to the private channel
+        await app.send_message(private_channel_chat_id, text=message_content, reply_markup=keyboard, sticker=sticker_file_id)
 
         # Set the interval for the recurring message (in seconds)
         await asyncio.sleep(3600)  # Adjust the interval as needed
