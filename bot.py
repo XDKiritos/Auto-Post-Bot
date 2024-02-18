@@ -31,12 +31,13 @@ async def send_recurring_message():
         # Set the interval for the recurring message (in seconds)
         await asyncio.sleep(3600)  # Adjust the interval as needed
 
-# Event handler for the bot starting
-@app.on_start()
-async def start_bot():
+# Event handler for incoming messages
+@app.on_message(filters.command("start"))
+async def start_bot(client, message):
     print("Bot has started!")
     # Start the recurring message loop
     asyncio.create_task(send_recurring_message())
 
 # Start the bot
 app.run()
+
