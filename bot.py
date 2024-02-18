@@ -45,3 +45,4 @@ async def start_bot(client, message):
 
 # Start the bot
 app.run()
+
