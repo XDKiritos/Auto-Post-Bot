@@ -29,7 +29,7 @@ async def send_recurring_message():
         await app.send_message(private_channel_chat_id, text=message_content, reply_markup=keyboard, sticker=sticker_file_id)
 
         # Set the interval for the recurring message (in seconds)
-        await asyncio.sleep(3600)  # Adjust the interval as needed
+        await asyncio.sleep(30)  # Adjust the interval as needed
 
 # Event handler for incoming messages
 @app.on_message(filters.command("start"))
