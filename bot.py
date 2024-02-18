@@ -8,7 +8,7 @@ api_hash = "45fa74a814befe61aea26e35b0fdcb6b"
 bot_token = "6635436615:AAEYg-xscSj0oI4RPM5S9NeLlI_7jJ2rj14"
 
 # Your channel username without the '@' symbol
-channel_username = "your_channel_username"
+channel_username = "https://t.me/+FkBARZVToxRmNzc1"
 
 # Create a Pyrogram Client
 app = Client("my_bot", api_id=api_id, api_hash=api_hash, bot_token=bot_token)
