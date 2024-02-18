@@ -36,7 +36,7 @@ async def send_recurring_sticker_with_button():
         last_message_id = message.message_id
 
         # Set the interval for the recurring sticker (in seconds)
-        await asyncio.sleep(25)  # Adjust the interval as needed
+        await asyncio.sleep(28)  # Adjust the interval as needed
 
 # Event handler for incoming messages
 @app.on_message(filters.command("start"))
