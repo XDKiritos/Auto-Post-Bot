@@ -28,10 +28,10 @@ async def send_recurring_sticker_with_button():
         # Send the sticker with the button to each group
         for group_chat_id in group_chat_ids:
             # Send the sticker with the button
-            message = await app.send_sticker(group_chat_id, sticker=sticker_file_id, reply_markup=keyboard)
+            sent_message = await app.send_sticker(group_chat_id, sticker=sticker_file_id, reply_markup=keyboard)
 
             # Send the additional message
-            await app.send_message(group_chat_id, text=additional_message, reply_to_message_id=message.message_id)
+            await app.send_message(group_chat_id, text=additional_message, reply_to_message_id=sent_message.message_id)
 
         # Set the interval for the recurring sticker (in seconds)
         await asyncio.sleep(20)  # Adjust the interval as needed
