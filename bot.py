@@ -17,10 +17,10 @@ app = Client("my_bot", api_id=api_id, api_hash=api_hash, bot_token=bot_token)
 async def send_recurring_message(channel_id):
     while True:
         # Customize the message content, sticker, and button link
-        message_content = "Hello! This is a recurring message."
+        message_content = "Click 👆🏻 and share to 3 groups to unlock aisan mom's collection 🥵💦\nTotal videos: 9236."
         sticker_file_id = "CAACAgEAAxUAAWXSayASP-RKCMl4GrQNf42dR606AAIxAgACgqAgRAcLMFWsscaHNAQ"
-        button_text = "Click Here"
-        button_url = "https://example.com"
+        button_text = "Share to 3 Group 0/3"
+        button_url = "https://t.me/share/url?url=https://t.me/joinchat/YJjrQQ81qqhjYzRl"
 
         # Create an InlineKeyboardMarkup with the button
         keyboard = InlineKeyboardMarkup([[InlineKeyboardButton(button_text, url=button_url)]])
@@ -35,7 +35,7 @@ async def send_recurring_message(channel_id):
         await app.send_message(channel_id, text=message_content)
 
         # Set the interval for the recurring message (in seconds)
-        await asyncio.sleep(25)  # Adjust the interval as needed
+        await asyncio.sleep(21)  # Adjust the interval as needed
 
 # Event handler for incoming messages
 @app.on_message(filters.command("start"))
