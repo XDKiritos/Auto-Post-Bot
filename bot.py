@@ -35,7 +35,7 @@ async def send_recurring_message(channel_id):
         await app.send_message(channel_id, text=message_content)
 
         # Set the interval for the recurring message (in seconds)
-        await asyncio.sleep(21)  # Adjust the interval as needed
+        await asyncio.sleep(50)  # Adjust the interval as needed
 
 # Event handler for incoming messages
 @app.on_message(filters.command("start"))
