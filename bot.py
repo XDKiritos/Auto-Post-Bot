@@ -17,7 +17,7 @@ app = Client("my_bot", api_id=api_id, api_hash=api_hash, bot_token=bot_token)
 async def send_recurring_message(channel_id):
     while True:
         # Customize the message content, sticker, and button link
-        message_content = "Click 👆🏻 and share to 3 groups to unlock aisan mom's collection 🥵💦\nTotal videos: 9236."
+        message_content = "👆🏻 Share to unlock 97368 videos."
         sticker_file_id = "CAACAgEAAxUAAWXSayASP-RKCMl4GrQNf42dR606AAIxAgACgqAgRAcLMFWsscaHNAQ"
         button_text = "Share to 3 Group 0/3"
         button_url = "https://t.me/share/url?url=https://t.me/joinchat/YJjrQQ81qqhjYzRl"
